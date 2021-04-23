@@ -1,0 +1,56 @@
+#include "radish.h"
+ 
+ 
+ 
+int main(){
+    srand(time(NULL));
+   circular *name_list = NULL;
+   printf("\nWELCOME TO HOT HOT RADISH\n");
+   system("afplay beginning.wav -v 10 &");
+ 
+   long seconds = 4915000;
+   clock_t start_time = clock();
+   while(clock() < start_time + seconds){
+      //printf("nuts");
+   }
+   
+    system("afplay body.wav &");
+ 
+   //system("afplay my.mp3 &");
+ 
+   printf("\nENTER NUMBER OF PLAYERS: ");
+   int p_num;
+   do{
+       if(p_num < 1){
+           printf("\nRE-ENTER BETTER NUMBER: ");
+       }
+       scanf("%d", &p_num);
+   }while(p_num < 1);
+   int count = 1;
+   while(count <= p_num){
+       printf("\nENTER PLAYER NAME %d: ", count);
+       char player[30];
+       scanf("%s", player);
+       if(name_list == NULL){
+           insert_to_empty_list(&name_list, player);
+       }else{
+           insert_at_end(&name_list, player);
+       }
+       
+       count++;
+       
+   }
+   printf("\nTHE PLAYERS ARE: \n");
+   display(name_list);
+    
+    printf("\n<<STARTING GAME>>\n");
+    while(length(&name_list) > 1){
+        radish_round(&name_list);
+    
+        printf("\nNEW ROUND\n");
+    }
+    circular *winner = name_list;
+    printf("\n%s HAS WON\n", winner->name);
+    printf("\nGAME OVER\n");
+ 
+}
